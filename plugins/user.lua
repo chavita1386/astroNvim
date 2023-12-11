@@ -8,5 +8,13 @@ return {
   --   config = function()
   --     require("lsp_signature").setup()
   --   end,
+  --
   -- },
+  {
+    "fynnfluegge/monet.nvim",
+    name = "monet",
+    opts = {
+      transparent_background = true,
+    },
+  },
 }

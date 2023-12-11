@@ -1,4 +1,14 @@
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    print("test auto lsp attach")
+    vim.diagnostic.config({
+      virtual_text = false,
+      underline = false,
+    })
+  end,
+})
 return {
+  --
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -18,12 +28,12 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "nightfox",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
-  diagnostics = {
-    virtual_text = true,
-    underline = true,
+  diagnostic = {
+    virtual_text = false,
+    underline = false,
   },
 
   lsp = {

@@ -5,21 +5,37 @@ return {
     opts = function(_, opts)
       -- customize the dashboard header
       opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
+        "----------------------------",
+        "Yb    dP 88 888888    db    ",
+        " Yb  dP  88   88     dPYb   ",
+        "  YbdP   88   88    dP__Yb  ",
+        "   YP    88   88   dP''''Yb ",
+        "----------------------------",
       }
       return opts
     end,
   },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme("nightfox")
+      vim.cmd([[highlight colorcolumn guibg='#1C2836']])
+      require("nightfox").setup({
+        options = {
+          transparent = true,
+        },
+      })
+    end,
+  },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#000000",
+    },
+  },
+
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --
