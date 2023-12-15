@@ -30,6 +30,15 @@ return {
     end,
   },
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "frappe",
+      transparent_background = true,
+    },
+  },
+  {
     "rcarriga/nvim-notify",
     opts = {
       background_colour = "#000000",

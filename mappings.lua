@@ -1,43 +1,55 @@
--- Mapping data with "desc" stored directly by vim.keymap.set().
---
--- Please use this mappings table to set keyboard mapping since this is the
--- lower level configuration and more robust one. (which-key will
--- automatically pick-up stored data by this setting.)
+-- local harpoon = require("harpoon")
+local grapple = require("grapple")
 return {
-  -- first key is the mode
   n = {
-    -- second key is the lefthand side of the map
     [";"] = { ":" },
-    -- navigate buffer tabs with `H` and `L`
+    ["<leader>e"] = {
+      "<cmd>Neotree reveal_force_cwd<cr>",
+      desc = "Open file explorer",
+    },
+    ["<leader>bl"] = {
+      "<cmd>Neotree buffers<cr>",
+      desc = "List of buffers",
+    },
+    ["<leader>mm"] = {
+      function()
+        grapple.toggle()
+        -- harpoon:list():append()
+        --
+      end,
+    },
+    ["<leader>ml"] = {
+      function()
+        grapple.popup_tags()
+        -- harpoon.ui:toggle_quick_menu(harpoon:list())
+      end,
+    },
     L = {
-      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      function()
+        -- harpoon:list():next()
+        grapple.cycle_forward()
+        -- require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+      end,
       desc = "Next buffer",
     },
     H = {
-      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      function()
+        grapple.cycle_backward()
+        -- harpoon:list():prev()
+        require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+      end,
       desc = "Previous buffer",
     },
-
-    -- mappings seen under group name "Buffer"
-    ["<leader>bD"] = {
+    ["<leader>bd"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(
-          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
-        )
+        require("astronvim.utils.buffer").close()
       end,
-      desc = "Pick to close",
+      desc = "Close buffer",
     },
     ["<leader>udi"] = {
-      function() vim.diagnostic.config { virtual_text = false } end,
+      function()
+        vim.diagnostic.config({ virtual_text = false })
+      end,
     },
-    -- tables with the `name` key will be registered with which-key if it's installed
-    -- this is useful for naming menus
-    ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-  },
-  t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
   },
 }
